@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bourse Intelligence — بوابة المنح الذكية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="aurora-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">🎓</div>
+      <div>
+        <span class="brand-name">Bourse Intelligence</span>
+        <span class="brand-sub" data-i18n="brandSub">منصة مطابقة المنح الذكية</span>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <button type="button" class="nav-btn active" data-tab="explore" data-i18n="navExplore">استكشاف المنح</button>
+      <button type="button" class="nav-btn" data-tab="insights" data-i18n="navInsights">تحليل الفرص</button>
+      <button type="button" class="nav-btn" data-tab="saved">
+        <span data-i18n="navSaved">المقارنة</span>
+        <span class="pill-count" id="savedCount">0</span>
+      </button>
+    </nav>
+
+    <div class="top-actions">
+      <button type="button" id="langToggle" class="lang-btn">English</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hope-badge" data-i18n="hopeBadge">✨ كل مسار عظيم يبدأ بفرصة تكتشفها في الوقت المناسب</div>
+        <h1 data-i18n="heroTitle">اكتشف المنح الدراسية الأقرب لطموحك بسرعة وذكاء</h1>
+        <p data-i18n="heroDesc">
+          أدخل دولتك، معدلك، تخصصك، ومستواك اللغوي ليقوم المحرك الذكي بتحليل أهليتك وحساب نسبة التوافق مع أبرز المنح العالمية بشفافية كاملة.
+        </p>
+      </div>
+
+      <div class="hero-gauges">
+        <div class="gauge-card">
+          <div class="gauge-ring" id="gaugeTop" style="--pct: 0; --clr: #34d399;">
+            <span id="valTop">0%</span>
+          </div>
+          <div class="gauge-title" data-i18n="kpiTop">أعلى نسبة توافق</div>
+        </div>
+
+        <div class="gauge-card">
+          <div class="gauge-ring" id="gaugeReadiness" style="--pct: 0; --clr: #38bdf8;">
+            <span id="valReadiness">0%</span>
+          </div>
+          <div class="gauge-title" data-i18n="kpiReadiness">جاهزية الملف</div>
+        </div>
+
+        <div class="gauge-card">
+          <div class="gauge-ring" id="gaugeEligible" style="--pct: 0; --clr: #fbbf24;">
+            <span id="valEligible">0/0</span>
+          </div>
+          <div class="gauge-title" data-i18n="kpiEligible">مؤهل مبدئياً</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <aside class="profile-panel">
+        <h2 data-i18n="profileTitle">ملفك الأكاديمي</h2>
+
+        <div class="form-group">
+          <label for="studentName" data-i18n="lblName">الاسم</label>
+          <input type="text" id="studentName" value="Djihad" />
+        </div>
+
+        <div class="form-group">
+          <label for="originCountrySelect" data-i18n="lblOrigin">دولتك (بلد الإقامة / الجنسية)</label>
+          <select id="originCountrySelect"></select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gpaInput" data-i18n="lblGpa">المعدل</label>
+            <input type="number" id="gpaInput" value="13.4" min="0" max="100" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label for="maxGpaInput" data-i18n="lblMaxGpa">السلم</label>
+            <input type="number" id="maxGpaInput" value="20" min="1" max="100" step="1" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fieldSelect" data-i18n="lblField">التخصص الدراسي</label>
+          <select id="fieldSelect"></select>
+        </div>
+
+        <div class="form-group">
+          <label for="englishSelect" data-i18n="lblEnglish">مستوى الإنجليزية</label>
+          <select id="englishSelect">
+            <option value="A1">A1</option>
+            <option value="A2">A2</option>
+            <option value="B1" selected>B1</option>
+            <option value="B2">B2</option>
+            <option value="C1">C1</option>
+            <option value="C2">C2</option>
+          </select>
+        </div>
+
+        <label class="toggle-item">
+          <input type="checkbox" id="hasCertCheck" />
+          <span data-i18n="lblCert">لدي شهادة IELTS / TOEFL</span>
+        </label>
+
+        <label class="toggle-item">
+          <input type="checkbox" id="langYearCheck" checked />
+          <span data-i18n="lblLangYear">أحتاج سنة تحضيرية للغة</span>
+        </label>
+
+        <label class="toggle-item">
+          <input type="checkbox" id="fullFundingCheck" checked />
+          <span data-i18n="lblFull">تمويل كامل فقط</span>
+        </label>
+
+        <hr class="divider" />
+
+        <label class="toggle-item">
+          <input type="checkbox" id="eligibleOnlyCheck" />
+          <span data-i18n="lblEligOnly">عرض المؤهلين مبدئياً فقط</span>
+        </label>
+
+        <div class="form-group">
+          <label for="minScoreRange">
+            <span data-i18n="lblMinScore">الحد الأدنى للتوافق:</span>
+            <strong id="minScoreVal">0%</strong>
+          </label>
+          <input type="range" id="minScoreRange" min="0" max="100" step="5" value="0" />
+        </div>
+      </aside>
+
+      <section class="results-area">
+        <div id="tab-explore" class="tab-content active">
+          <div class="results-toolbar">
+            <input type="text" id="searchInput" class="search-box" placeholder="ابحث باسم المنحة أو الدولة..." />
+            <span class="results-counter" id="resultsCounter">0</span>
+          </div>
+          <div class="cards-grid" id="cardsGrid"></div>
+        </div>
+
+        <div id="tab-insights" class="tab-content">
+          <div class="insight-box">
+            <h3 data-i18n="insightTitle">توزيع نسب التوافق عبر المنح</h3>
+            <div id="barsContainer" class="bars-list"></div>
+          </div>
+        </div>
+
+        <div id="tab-saved" class="tab-content">
+          <div class="cards-grid" id="savedGrid"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
